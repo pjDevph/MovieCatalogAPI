@@ -1,0 +1,249 @@
+{
+  "info": {
+    "name": "MovieCatalogAPI",
+    "_postman_id": "movie-catalog-api-collection",
+    "description": "API collection for MovieCatalogAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User Registration",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\",\n  \"isAdmin\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/users/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["users", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User Authentication (Login)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/users/authenticate",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["users", "authenticate"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User Details",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:4000/users/{{userId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["users", "{{userId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Movie (Admin only)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Inception\",\n  \"director\": \"Christopher Nolan\",\n  \"year\": 2010,\n  \"description\": \"A thief who steals corporate secrets through dream-sharing technology.\",\n  \"genre\": \"Sci-Fi\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/movies/addMovie",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["movies", "addMovie"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Movies",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/movies/getMovies",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["movies", "getMovies"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Movie By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/movies/getMovie/{{movieId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["movies", "getMovie", "{{movieId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Movie (Admin only)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Inception Updated\",\n  \"director\": \"Christopher Nolan\",\n  \"year\": 2011,\n  \"description\": \"Updated description\",\n  \"genre\": \"Sci-Fi\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/movies/updateMovie/{{movieId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["movies", "updateMovie", "{{movieId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Movie (Admin only)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:4000/movies/deleteMovie/{{movieId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["movies", "deleteMovie", "{{movieId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Comment to Movie",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"commentText\": \"Amazing movie!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/movies/{{movieId}}/comments/addComment",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["movies", "{{movieId}}", "comments", "addComment"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Comments of Movie",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/movies/{{movieId}}/comments/getComments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["movies", "{{movieId}}", "comments", "getComments"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "userId",
+      "value": ""
+    },
+    {
+      "key": "movieId",
+      "value": ""
+    }
+  ]
+}
